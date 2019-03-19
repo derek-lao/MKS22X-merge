@@ -29,6 +29,7 @@ public class Merge{
   // }
 
   public static void mergesortMake(int[] data){
+
     if(data.length <= 1){}
     else
     {
@@ -43,28 +44,67 @@ public class Merge{
         right[i] = data[left.length + i];
       }
       System.out.println("My two new arrays are");
-      System.out.println(Arrays.toString(left));
-      System.out.println(Arrays.toString(right));
+      System.out.print("Left: " + Arrays.toString(left) + " ");
+      System.out.println("Right: " + Arrays.toString(right));
       mergesortMake(left);
       mergesortMake(right);
-      for(int i = 0, a = 0 , b = 0; a < left.length && b < right.length && i < data.length; i ++)
+      if(left.length == 0)
       {
-        if(left[a] <= right[b])
+        data[0] = right[0];
+      }
+      if(right.length == 0)
+      {
+        data[0] = left[0];
+      }
+      for(int i = 0, a = 0 , b = 0;i < data.length; i ++)
+      {
+        if(a == left.length)
         {
-          data[i] = left[a];
-          a ++;
-        }
-        else
-        {
-          data[i] = right[b];
+          data[i] = left[b];
           b ++;
+          System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
+          continue;
+        }
+        else if(b == right.length)
+        {
+          data[i] = right[a];
+          a ++;
+          System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
+          continue;
+        }
+        else if(a < left.length && b < right.length)
+        {
+          if(left[a] <= right[b])
+          {
+            data[i] = left[a];
+            a ++;
+            System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
+            continue;
+          }
+          else
+          {
+            data[i] = right[b];
+            b ++;
+            System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
+            continue;
+          }
         }
       }
+      System.out.println("After combining the previous two arrays, here is my combined! " + Arrays.toString(data));
     }
   }
 
   public static void main(String[] args){
-
+    int[] randomArray = new int[10];
+    int[] problemArray = {17, 18, 7, 13, 1, 5, 16, 11, 0, 5};
+    for(int i = 0; i < randomArray.length; i ++)
+    {
+      randomArray[i] = ((int) (Math.random() * 1000)) % 20;
+    }
+    // System.out.println("My current array being used is " + Arrays.toString(randomArray));
+    // mergesort(randomArray);
+    System.out.println("My current array being used is " + Arrays.toString(problemArray));
+    mergesort(problemArray);
   }
 
 }
