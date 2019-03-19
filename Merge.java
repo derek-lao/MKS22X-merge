@@ -56,35 +56,45 @@ public class Merge{
       {
         data[0] = left[0];
       }
-      for(int i = 0, a = 0 , b = 0;i < data.length; i ++)
+      for(int i = 0, a = 0 , b = 0; i < data.length;)
       {
         if(a == left.length)
         {
+          System.out.println("The i index is now " + i);
           data[i] = left[b];
+          System.out.println("left[b] is " + left[b]);
           b ++;
-          System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
+          i ++;
+          System.out.println("Moved from right array into data due to empty left array. Here is my data! " + Arrays.toString(data));
           continue;
         }
         else if(b == right.length)
         {
+          System.out.println("The i index is now " + i);
           data[i] = right[a];
+          System.out.println("right[a] is " + right[a]);
           a ++;
-          System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
+          i ++;
+          System.out.println("Moved from left array into data due to empty right array. Here is my data! " + Arrays.toString(data));
           continue;
         }
         else if(a < left.length && b < right.length)
         {
           if(left[a] <= right[b])
           {
+            System.out.println("The i index is now " + i);
             data[i] = left[a];
             a ++;
+            i ++;
             System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
             continue;
           }
           else
           {
+            System.out.println("The i index is now " + i);
             data[i] = right[b];
             b ++;
+            i ++;
             System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
             continue;
           }
