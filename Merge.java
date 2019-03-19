@@ -43,11 +43,12 @@ public class Merge{
       {
         right[i] = data[left.length + i];
       }
-      System.out.println("My two new arrays are");
-      System.out.print("Left: " + Arrays.toString(left) + " ");
-      System.out.println("Right: " + Arrays.toString(right));
+      // System.out.println("My two new arrays are");
+      // System.out.print("Left: " + Arrays.toString(left) + " ");
+      // System.out.println("Right: " + Arrays.toString(right));
       mergesortMake(left);
       mergesortMake(right);
+      //past this point, the data has finished splitting. We move onto merging now
       if(left.length == 0)
       {
         data[0] = right[0];
@@ -58,49 +59,47 @@ public class Merge{
       }
       for(int i = 0, a = 0 , b = 0; i < data.length;)
       {
-        if(a == left.length)
+        if(b == right.length)
         {
-          System.out.println("The i index is now " + i);
-          data[i] = left[b];
-          System.out.println("left[b] is " + left[b]);
-          b ++;
-          i ++;
-          System.out.println("Moved from right array into data due to empty left array. Here is my data! " + Arrays.toString(data));
-          continue;
-        }
-        else if(b == right.length)
-        {
-          System.out.println("The i index is now " + i);
-          data[i] = right[a];
-          System.out.println("right[a] is " + right[a]);
+          // System.out.println("The i index is now " + i);
+          data[i] = left[a];
+          // System.out.println("left[a] is " + left[a]);
           a ++;
           i ++;
-          System.out.println("Moved from left array into data due to empty right array. Here is my data! " + Arrays.toString(data));
-          continue;
+          // System.out.println("Moved from left array into data due to empty right array. Here is my data! " + Arrays.toString(data));
+        }
+        else if(a == left.length)
+        {
+          // System.out.println("The i index is now " + i);
+          data[i] = right[b];
+          // System.out.println("right[b] is " + right[b]);
+          b ++;
+          i ++;
+          // System.out.println("Moved from right array into data due to empty left array. Here is my data! " + Arrays.toString(data));
         }
         else if(a < left.length && b < right.length)
         {
           if(left[a] <= right[b])
           {
-            System.out.println("The i index is now " + i);
+            // System.out.println("The i index is now " + i);
             data[i] = left[a];
             a ++;
             i ++;
-            System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
+            // System.out.println("Moved from left array into data. Here is my data! " + Arrays.toString(data));
             continue;
           }
           else
           {
-            System.out.println("The i index is now " + i);
+            // System.out.println("The i index is now " + i);
             data[i] = right[b];
             b ++;
             i ++;
-            System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
+            // System.out.println("Moved from right array into data. Here is my data! " + Arrays.toString(data));
             continue;
           }
         }
       }
-      System.out.println("After combining the previous two arrays, here is my combined! " + Arrays.toString(data));
+      // System.out.println("After combining the previous two arrays, here is my combined! " + Arrays.toString(data));
     }
   }
 
@@ -111,10 +110,12 @@ public class Merge{
     {
       randomArray[i] = ((int) (Math.random() * 1000)) % 20;
     }
-    // System.out.println("My current array being used is " + Arrays.toString(randomArray));
-    // mergesort(randomArray);
-    System.out.println("My current array being used is " + Arrays.toString(problemArray));
-    mergesort(problemArray);
+    System.out.println("My current array being used is " + Arrays.toString(randomArray));
+    mergesort(randomArray);
+    System.out.println("My sorted array is " + Arrays.toString(randomArray));
+    // System.out.println("My current array being used is " + Arrays.toString(problemArray));
+    // mergesort(problemArray);
+    // System.out.println("My sorted array is " + Arrays.toString(problemArray));
   }
 
 }
